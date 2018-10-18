@@ -12,14 +12,18 @@ import com.beust.jcommander.JCommander;
 
 public class Daemon {
 
+	int port = 4445;
+
 	public static void main(final String[] args) throws IOException, AWTException {
+		System.out.println("Starting...");
 		Daemon main = new Daemon();
 		JCommander.newBuilder().addObject(main).build().parse(args);
 		main.run();
 	}
 
 	private void run() throws IOException, AWTException {
-		DatagramSocket socket = new DatagramSocket(4445);
+		DatagramSocket socket = new DatagramSocket(port);
+		System.out.println("Started on " + port);
 
 		boolean running = true;
 		byte[] buf = new byte[256];
